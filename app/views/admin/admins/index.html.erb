@@ -1,0 +1,35 @@
+<%= link_to 'Novo Administrador', new_admin_admin_path, class: 'btn btn-success mb-4' %>
+
+<h4>Admins</h4><br>
+
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Email</th>
+      <th scope="col">Data de criação</th>
+      <th scope="col">Ações</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @admins.each do |admin| %>
+      <tr>
+        <th scope="row"><%= admin.id %></th>
+        <td>
+          <%= admin.name %>
+        </td>
+        <td>
+          <%= admin.email %>
+        </td>
+        <td>
+          <%= admin.created_at.to_formatted_s(:short) %>
+        </td>
+        <td>
+          <%= link_to 'Editar', edit_admin_admin_path(admin), class: 'btn btn-warning btn-sm' %>
+          <%= link_to 'Apagar', admin_admin_path(admin), class: 'btn btn-danger btn-sm', data: {confirm:'Confirmar ação de apagar?'}, method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

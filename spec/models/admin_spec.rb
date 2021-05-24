@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Admin, type: :model do
   context 'register' do
     it 'is valid' do
-      admin = Admin.new(email:'admin@tester.com', password: '123456')
+      admin = Admin.new(name: 'Sr Tester', email:'admin@tester.com', password: '123456')
 
       expect(admin).to be_valid
     end
