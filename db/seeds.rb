@@ -5,11 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-Admin.create(name: 'Administrador', email:"admin@admin.com", password:'123admin')
+Admin.create(name: 'Administrador', email:"admin@admin.com", password:'123456')
 puts 'Admin gerado com sucesso'
 
 unless Rails.env.production?
-  User.create(name: 'Sr User', email:'user@tester.com',
+  User.create(name: 'Sr User', email:'user@user.com',
               password: '123456', phone: '11977777777', 
               avatar: Rack::Test::UploadedFile.new(Rails.root.join("spec", "support", "test-avatar.png"), "image/png"))
   puts 'Usuario criado com sucesso'
