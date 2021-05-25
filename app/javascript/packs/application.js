@@ -10,6 +10,8 @@ import "channels"
 
 import "./like_toggle"
 import "./comment_toggle"
+
+//messages functions -> check environment.js
 //import $ from 'jquery';
 //global.$ = jQuery;
 

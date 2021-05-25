@@ -1,20 +1,33 @@
 class User::CommentsController < UserController
 
-  def show
-    @post = Post.new
-    @comment = Comment.new
+  def create
+    f_params = form_params.merge(user: current_user)
+    @comment = Comment.new(f_params)
+    @post = @comment.post
+
+    if @comment.save
+      respond_to do |format|
+        format.js { render "create" }
+      end
+    end
   end
 
-  def potential_to_follow
-    @potential_to_follow = User.potential_to_follow(current_user)
+  def destroy
+    @comment = Comment.find_by(id: params[:id])
+    @post = @comment.post
+
+    if @comment.destroy
+      respond_to do |format|
+        format.js { render "destroy" }
+      end
+    end
   end
 
-  def following
-    @following = current_user.following
-  end
 
-  def followers
-    @followers = current_user.followers
+  private
+
+  def form_params
+    params.require(:comment).permit(:body, :post_id)
   end
 
 end
