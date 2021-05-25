@@ -9,10 +9,27 @@ Rails.application.routes.draw do
     root to: "home#index"
     resources :admins
     resources :users, only: %i[index]
+    resources :posts, only: [:index, :show]
   end
 
   namespace :user do
-    resources :users
-  end
+    resources :users, only: :show
+    
+    get 'profile', to: "profile#show"
 
+    get 'potential_to_follow', to: "profile#potential_to_follow"
+    get 'following', to: "profile#following"
+    get 'followers', to: "profile#followers"
+
+    post 'follow/:id', to: "subscriptions#follow", as: :follow
+    post 'unfollow/:id', to: "subscriptions#unfollow", as: :unfollow
+
+    resources :posts, only: [:create, :destroy] do
+      member do
+        post :like_toggle
+      end
+    end
+
+    resources :comments, only: [:create, :destroy]
+  end
 end
