@@ -1,4 +1,4 @@
-class User::ProfileController < UserController
+class User::CommentsController < UserController
 
   def show
     @post = Post.new
