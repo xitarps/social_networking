@@ -10,7 +10,7 @@ puts 'Admin gerado com sucesso'
 
 unless Rails.env.production?
   User.create(name: 'Sr User', email:'user@tester.com',
-              password: '12345', phone: '11977777777', 
+              password: '123456', phone: '11977777777', 
               avatar: Rack::Test::UploadedFile.new(Rails.root.join("spec", "support", "test-avatar.png"), "image/png"))
   puts 'Usuario criado com sucesso'
 end
